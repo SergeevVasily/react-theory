@@ -7,21 +7,24 @@ class App extends Component {
   state = {
     cars: [
       {name: 'Ford', year:2018},
+      {name: 'Ford', year:2018},
       {name: 'Audi', year:2016},
+      {name: 'Tesla S', year:2013},
       {name: 'Tesla S', year:2013},
     ],
     pageTitle: 'React Comp'
   }
 
-  changeTitleHandler = () =>{
-
-    const oldTitle = this.state.pageTitle
-
-    const newTitle = oldTitle + '(changed)'
+  changeTitleHandler = (newTitle) =>{
     this.setState({
       pageTitle: newTitle
     })
+  }
 
+  handleInput =(event) =>{
+    this.setState({
+      pageTitle: event.target.value
+    })
   }
 
   render() {
@@ -32,19 +35,43 @@ class App extends Component {
       'background':'navy'
     }
 
-  const cars = this.state.cars
+
 
     return (
       <div style={divStyle}>
        <h1>{this.state.pageTitle}</h1>
 
-        <button onClick={this.changeTitleHandler }>Change Title</button>
+        <input type="text" onChange={this.handleInput}/>
 
-        <Car name={cars[0].name} year={cars[0].year}/>
-        <Car name={cars[1].name} year={cars[1].year}/>
-        <Car name={cars[2].name} year={cars[2].year}/>
+        <button onClick={this.changeTitleHandler.bind(this, 'Changed!') }>Change Title</button>
+        
+        { this.state.cars.map((car)=>{
+          return(
+              <Car
+                name={car.name}
+                year={car.year}
+                onChangeTitle={() => this.changeTitleHandler(car.name)}
+              />
+          )
+        }) }
+
+
+        {/*<Car*/}
+            {/*name={cars[0].name}*/}
+            {/*year={cars[0].year}*/}
+            {/*onChangeTitle={this.changeTitleHandler.bind(this, cars[0].name)}*/}
+        {/*/>*/}
+        {/*<Car*/}
+            {/*name={cars[1].name}*/}
+            {/*year={cars[1].year}*/}
+            {/*onChangeTitle={()=> this.changeTitleHandler(cars[1].name)}*/}
+        {/*/>*/}
+        {/*<Car*/}
+            {/*name={cars[2].name}*/}
+            {/*year={cars[2].year}*/}
+            {/*onChangeTitle={()=> this.changeTitleHandler(cars[2].name)}*/}
+        {/*/>*/}
       </div>
-
     );
   }
 }
