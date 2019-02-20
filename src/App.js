@@ -7,7 +7,6 @@ class App extends Component {
   state = {
     cars: [
       {name: 'Ford', year:2018},
-      {name: 'Ford', year:2018},
       {name: 'Audi', year:2016},
       {name: 'Tesla S', year:2013},
     ],
@@ -23,7 +22,7 @@ class App extends Component {
       this.setState({cars})
   }
 
-     toggleCarsHandler = () =>{                       // hide / show cars method
+     toggleCarsHandler = () =>{                                    // hide show cars method
          this.setState({
           showCars: !this.state.showCars
         })
@@ -43,7 +42,7 @@ class App extends Component {
   render(){
     console.log('render')
     const divStyle ={
-      textAlign:'center',             //its all about style bto
+      textAlign:'center',                                       //its all about style bto
       'color':'blue',
       'background':'black'
     }
@@ -74,10 +73,9 @@ class App extends Component {
               paddingTop: '20px',
               paddingBottom:'20px'
           }}>
-
               { cars }
           </div>
-                                                                 {/*toggle method */}
+                                                                     {/*toggle method */}
       </div>
     );
   }
