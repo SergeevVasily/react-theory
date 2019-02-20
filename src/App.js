@@ -28,6 +28,10 @@ class App extends Component {
           showCars: !this.state.showCars
         })
       }
+
+      deleteHandler(){
+        console.log("Delete")
+      }
       // changeTitleHandler = pageTitle =>{
       //     this.setState({pageTitle})
       // }*/
@@ -49,6 +53,7 @@ class App extends Component {
                         key={index}
                         name={car.name}
                         year={car.year}
+                        onDelete={this.deleteHandler}
                         onChangeName={ event => this.onChangeName(event.target.value, index)}
                     />
                 )
