@@ -11,44 +11,48 @@ class App extends Component {
       {name: 'Audi', year:2016},
       {name: 'Tesla S', year:2013},
     ],
-    pageTitle: 'React Comp'
+    pageTitle: 'React Comp',
+      showCars: false
   }
 
-  changeTitleHandler = (newTitle) =>{
+  toggleCarsHandler = () =>{                       // hide / show cars method
     this.setState({
-      pageTitle: newTitle
+      showCars: !this.state.showCars
     })
   }
 
-  handleInput =(event) =>{
-    this.setState({
-      pageTitle: event.target.value
-    })
+  changeTitleHandler = pageTitle =>{
+      this.setState({pageTitle})
   }
 
   render(){
     console.log('render')
     const divStyle ={
-      textAlign:'center',
-      'color':'red',
-      'background':'navy'
+      textAlign:'center',             //its all about style bto
+      'color':'blue',
+      'background':'black'
+    }
+
+    let cars = null;
+
+    if (this.state.showCars){
+            cars = this.state.cars.map((car,index)=>{            //toggle cars
+                return(
+                    <Car
+                        key={index}
+                        name={car.name}
+                        year={car.year}
+                        onChangeTitle={ () => this.changeTitleHandler(car.name)}
+                    />
+                )
+            })
     }
 
     return (
       <div style={divStyle}>
        <h1>{this.state.pageTitle}</h1>
-        <input type="text" onChange={this.handleInput}/>
-        <button onClick={this.changeTitleHandler.bind(this, 'Changed!')}>Change Title</button>
-        { this.state.cars.map((car)=>{
-          return(
-              <Car
-                name={car.name}
-                year={car.year}
-                onChangeTitle={ () => this.changeTitleHandler(car.name)}
-              />
-          )
-        }) }
-
+        <button onClick={this.toggleCarsHandler}>Toggle Cars</button>
+        { cars }                                                            {/*toggle method */}
       </div>
     );
   }
