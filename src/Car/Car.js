@@ -2,7 +2,26 @@ import React from 'react';
 import './Car.css'
 import Radium from 'radium'
 
-const Car = props => {
+
+
+class Car extends React.Component{
+
+componentWillReceiveProps(nextProps, nextContext) {
+    console.log('Car component Will Receive Props', nextProps)
+}
+
+shouldComponentUpdate(nextProps, nextState, nextContext) {
+    console.log('Car should component update', nextProps, nextState)
+}
+
+componentWillUpdate(nextProps, nextState, nextContext) {
+    console.log('Car component did update')
+}
+
+componentDidUpdate(prevProps, prevState, snapshot) {
+}
+
+    render() {
     const inputClasses = ['input'];
     if (props.name !== ''){
         inputClasses.push('green')
@@ -21,7 +40,7 @@ const Car = props => {
             boxShadow: '0 4px 15px 0 rgba(0, 0 , 99, .77)',
             cursor: 'pointer'
         }
-    }
+    };
 
     return (
         <div className="Car" style={style}>
@@ -37,6 +56,6 @@ const Car = props => {
             {/*<button onClick={props.onChangeTitle}>Click</button>*/}
         </div>
     )
-}
+    }
 
-export default Radium(Car)
+export  default component Radium(Car);

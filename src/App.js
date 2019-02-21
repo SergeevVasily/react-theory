@@ -4,15 +4,18 @@ import Car from './Car/Car'
 
 class App extends Component {
 
-  state = {
-    cars: [
-      {name: 'Ford', year:2018},
-      {name: 'Audi', year:2016},
-      {name: 'Tesla S', year:2013},
-    ],
-    pageTitle: 'React Comp',
-      showCars: false
-  }
+    constructor(props){
+        super(props)
+        this.state = {
+            cars: [
+                {name: 'Ford', year:2018},
+                {name: 'Audi', year:2016},
+                {name: 'Tesla S', year:2013},
+            ],
+            pageTitle: 'React Comp',
+            showCars: false
+        }
+    }
 
   onChangeName= (name, index) =>{
       const car = this.state.cars[index]
@@ -35,12 +38,21 @@ class App extends Component {
           this.setState({cars})
 
       }
-      // changeTitleHandler = pageTitle =>{
+
+      componentWillMount() {
+        console.log("Component will mount")
+      }
+
+      componentDidMount() {
+        console.log("Component did mount")
+      }
+
+    // changeTitleHandler = pageTitle =>{
       //     this.setState({pageTitle})
       // }*/
 
   render(){
-    console.log('render')
+    console.log(' App render')
     const divStyle ={
       textAlign:'center',                                       //its all about style bto
       'color':'blue',
@@ -65,7 +77,9 @@ class App extends Component {
 
     return (
       <div style={divStyle}>
-       <h1>{this.state.pageTitle}</h1>
+
+       {/*<h1>{this.state.pageTitle}</h1>*/}
+          <h1>{this.props.title}</h1>
         <button onClick={this.toggleCarsHandler}>Toggle Cars</button>
           <div style={{
               width: 400,
