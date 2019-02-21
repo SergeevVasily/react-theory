@@ -74,8 +74,7 @@ class App extends Component {
               paddingBottom:'20px'
           }}>
               { cars }
-          </div>
-                                                                     {/*toggle method */}
+          </div>{/*toggle method */}
       </div>
     );
   }

@@ -8,6 +8,7 @@
 }
 .Car:hover{
     outline: none;
+    border: none;
 }
 
 .input
