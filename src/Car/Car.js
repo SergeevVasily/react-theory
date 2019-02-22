@@ -1,61 +1,78 @@
 import React from 'react';
 import './Car.css'
-import Radium from 'radium'
+//import Radium from 'radium'
 
 
 
-class Car extends React.Component{
+class Car extends React.Component {
+componentWillReceiveProps(nextProps){
 
-componentWillReceiveProps(nextProps, nextContext) {
-    console.log('Car component Will Receive Props', nextProps)
+    console.log('Car ComponentWillReceiveProps', nextProps)
+}
+shouldComponentUpdate(nextProps, nextState){
+    console.log(' Car shouldComponentUpdate', nextProps, nextState)
+    return nextProps.name.trim() !== this.props.name.trim()
 }
 
-shouldComponentUpdate(nextProps, nextState, nextContext) {
-    console.log('Car should component update', nextProps, nextState)
+static getDerivedStateFromProps(nextProps, prevState){
+ console.log('Car getDerivedStateFromProps', nextProps, prevState)
+
+    return prevState
 }
 
 componentWillUpdate(nextProps, nextState, nextContext) {
-    console.log('Car component did update')
+    console.log('Car componentWillUpdate', nextProps, nextState, nextContext)
+}
+componentDidUpdate(){
+    console.log('Car componentDidUpdate')
 }
 
-componentDidUpdate(prevProps, prevState, snapshot) {
+getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('getSnapshotBeforeUpdate')
 }
+
+    componentWillUnmount() {
+    console.log('Car ComponentWillUnmount')
+}
+
 
     render() {
-    const inputClasses = ['input'];
-    if (props.name !== ''){
-        inputClasses.push('green')
-    }else{
-        inputClasses.push('red')
-    }
-    if (props.name.length > 4){
-        inputClasses.push('bold')
-    }
-
-    const style ={
-        border: '1px solid navy',
-        boxShadow: '0 4px 5px 0 rgba(99, 0 , 99, .99)',
-        ':hover': {
-            border: '1px solid purple',
-            boxShadow: '0 4px 15px 0 rgba(0, 0 , 99, .77)',
-            cursor: 'pointer'
+    console.log('Car render')
+        const inputClasses = ['input'];
+        if (this.props.name !== '') {
+            inputClasses.push('green')
+        } else {
+            inputClasses.push('red')
         }
-    };
+        if (this.props.name.length > 4) {
+            inputClasses.push('bold')
+        }
 
-    return (
+        const style = {
+            border: '1px solid navy',
+            boxShadow: '0 4px 5px 0 rgba(99, 0 , 99, .99)',
+            ':hover': {
+                border: '1px solid purple',
+                boxShadow: '0 4px 15px 0 rgba(0, 0 , 99, .77)',
+                cursor: 'pointer'
+            }
+        }
+
+        return(
         <div className="Car" style={style}>
-            <h3>Car name: {props.name}</h3>
-            <p>Year: <strong>{props.year}</strong></p>
-            <input
-                type="text"
-                onChange={props.onChangeName}
-                value={props.name}
-                className={inputClasses.join(' ')}
-            />
-            <button onClick={props.onDelete}>Delete</button>
+            <h3>Car name: {this.props.name}</h3>
+                <p>Year: <strong>{this.props.year}</strong></p>
+    <input
+        type="text"
+        onChange={this.props.onChangeName}
+        value={this.props.name}
+        className={inputClasses.join(' ')}
+    />
+        <button onClick={this.props.onDelete}>Delete</button>
             {/*<button onClick={props.onChangeTitle}>Click</button>*/}
         </div>
-    )
+        )
     }
+}
 
-export  default component Radium(Car);
+export default Car
