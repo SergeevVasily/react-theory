@@ -1,6 +1,6 @@
 import React from 'react';
 import './Car.css'
-//import Radium from 'radium'
+import Radium from 'radium'
 
 
 
@@ -10,15 +10,15 @@ componentWillReceiveProps(nextProps){
     console.log('Car ComponentWillReceiveProps', nextProps)
 }
 shouldComponentUpdate(nextProps, nextState){
-    console.log(' Car shouldComponentUpdate', nextProps, nextState)
+    console.log(' Car shouldComponentUpdate', nextProps, nextState);
     return nextProps.name.trim() !== this.props.name.trim()
 }
 
-static getDerivedStateFromProps(nextProps, prevState){
+/*static getDerivedStateFromProps(nextProps, prevState){
  console.log('Car getDerivedStateFromProps', nextProps, prevState)
 
     return prevState
-}
+}*/
 
 componentWillUpdate(nextProps, nextState, nextContext) {
     console.log('Car componentWillUpdate', nextProps, nextState, nextContext)
@@ -27,9 +27,9 @@ componentDidUpdate(){
     console.log('Car componentDidUpdate')
 }
 
-getSnapshotBeforeUpdate(prevProps, prevState) {
+/*getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('getSnapshotBeforeUpdate')
-}
+}*/
 
     componentWillUnmount() {
     console.log('Car ComponentWillUnmount')
@@ -37,7 +37,13 @@ getSnapshotBeforeUpdate(prevProps, prevState) {
 
 
     render() {
-    console.log('Car render')
+
+    console.log('Car render');
+
+        /*if (Math.random() > 0.7){
+            throw new Error('Car random failed')
+        }*/
+
         const inputClasses = ['input'];
         if (this.props.name !== '') {
             inputClasses.push('green')
@@ -56,7 +62,7 @@ getSnapshotBeforeUpdate(prevProps, prevState) {
                 boxShadow: '0 4px 15px 0 rgba(0, 0 , 99, .77)',
                 cursor: 'pointer'
             }
-        }
+        };
 
         return(
         <div className="Car" style={style}>
@@ -75,4 +81,4 @@ getSnapshotBeforeUpdate(prevProps, prevState) {
     }
 }
 
-export default Car
+export default Radium(Car)
